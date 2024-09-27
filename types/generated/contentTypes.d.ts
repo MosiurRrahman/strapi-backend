@@ -926,9 +926,34 @@ export interface ApiHomePageHomePage extends Schema.SingleType {
     draftAndPublish: true;
   };
   attributes: {
-    blog_section: Attribute.Component<'layout.section-layout'>;
-    award_section: Attribute.Component<'layout.section-layout'>;
-    testimonial_section: Attribute.Component<'layout.section-layout'>;
+    Home_Section: Attribute.DynamicZone<
+      [
+        'components.hero-section',
+        'components.our-partner',
+        'components.about-section'
+      ]
+    >;
+    portfolio_works: Attribute.Relation<
+      'api::home-page.home-page',
+      'oneToMany',
+      'api::portfolio-work.portfolio-work'
+    >;
+    services: Attribute.Relation<
+      'api::home-page.home-page',
+      'oneToMany',
+      'api::service.service'
+    >;
+    solution_process: Attribute.DynamicZone<['components.solution-process']>;
+    testimonials: Attribute.Relation<
+      'api::home-page.home-page',
+      'oneToMany',
+      'api::testimonial.testimonial'
+    >;
+    blogs: Attribute.Relation<
+      'api::home-page.home-page',
+      'oneToMany',
+      'api::blog.blog'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1105,6 +1130,40 @@ export interface ApiTeamPageTeamPage extends Schema.SingleType {
   };
 }
 
+export interface ApiTestimonialTestimonial extends Schema.CollectionType {
+  collectionName: 'testimonials';
+  info: {
+    singularName: 'testimonial';
+    pluralName: 'testimonials';
+    displayName: 'Testimonial';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    des: Attribute.String;
+    client_name: Attribute.String;
+    designation: Attribute.String;
+    image: Attribute.Media<'images'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::testimonial.testimonial',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::testimonial.testimonial',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1133,6 +1192,7 @@ declare module '@strapi/types' {
       'api::service-page.service-page': ApiServicePageServicePage;
       'api::team.team': ApiTeamTeam;
       'api::team-page.team-page': ApiTeamPageTeamPage;
+      'api::testimonial.testimonial': ApiTestimonialTestimonial;
     }
   }
 }

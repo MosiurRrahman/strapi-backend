@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_components_solution_processes",
+  "info": {
+    "displayName": "solution process",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "process_list": {
+      "type": "component",
+      "repeatable": true,
+      "component": "reusable.list-item"
+    }
+  }
+}

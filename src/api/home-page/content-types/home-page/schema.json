@@ -12,20 +12,39 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "blog_section": {
-      "type": "component",
-      "repeatable": false,
-      "component": "layout.section-layout"
+    "Home_Section": {
+      "type": "dynamiczone",
+      "components": [
+        "components.hero-section",
+        "components.our-partner",
+        "components.about-section"
+      ]
     },
-    "award_section": {
-      "type": "component",
-      "repeatable": false,
-      "component": "layout.section-layout"
+    "portfolio_works": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::portfolio-work.portfolio-work"
     },
-    "testimonial_section": {
-      "type": "component",
-      "repeatable": false,
-      "component": "layout.section-layout"
+    "services": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::service.service"
+    },
+    "solution_process": {
+      "type": "dynamiczone",
+      "components": [
+        "components.solution-process"
+      ]
+    },
+    "testimonials": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::testimonial.testimonial"
+    },
+    "blogs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::blog.blog"
     }
   }
 }

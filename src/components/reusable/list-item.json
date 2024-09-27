@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_reusable_list_items",
+  "info": {
+    "displayName": "list_item"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    }
+  }
+}
