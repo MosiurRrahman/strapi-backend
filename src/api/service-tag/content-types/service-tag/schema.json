@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "service_tags",
+  "info": {
+    "singularName": "service-tag",
+    "pluralName": "service-tags",
+    "displayName": "Service Tag"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Tags": {
+      "type": "string"
+    },
+    "service": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::service.service",
+      "inversedBy": "service_tags"
+    }
+  }
+}

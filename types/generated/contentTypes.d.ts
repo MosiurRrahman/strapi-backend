@@ -1026,6 +1026,11 @@ export interface ApiServiceService extends Schema.CollectionType {
     content: Attribute.RichText;
     cover_image: Attribute.Media<'images'>;
     thumb_image: Attribute.Media<'images', true>;
+    service_tags: Attribute.Relation<
+      'api::service.service',
+      'oneToMany',
+      'api::service-tag.service-tag'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1069,6 +1074,41 @@ export interface ApiServicePageServicePage extends Schema.SingleType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::service-page.service-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiServiceTagServiceTag extends Schema.CollectionType {
+  collectionName: 'service_tags';
+  info: {
+    singularName: 'service-tag';
+    pluralName: 'service-tags';
+    displayName: 'Service Tag';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Tags: Attribute.String;
+    service: Attribute.Relation<
+      'api::service-tag.service-tag',
+      'manyToOne',
+      'api::service.service'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::service-tag.service-tag',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::service-tag.service-tag',
       'oneToOne',
       'admin::user'
     > &
@@ -1190,6 +1230,7 @@ declare module '@strapi/types' {
       'api::portfolio-work.portfolio-work': ApiPortfolioWorkPortfolioWork;
       'api::service.service': ApiServiceService;
       'api::service-page.service-page': ApiServicePageServicePage;
+      'api::service-tag.service-tag': ApiServiceTagServiceTag;
       'api::team.team': ApiTeamTeam;
       'api::team-page.team-page': ApiTeamPageTeamPage;
       'api::testimonial.testimonial': ApiTestimonialTestimonial;

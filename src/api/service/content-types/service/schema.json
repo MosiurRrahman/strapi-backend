@@ -33,6 +33,12 @@
       "allowedTypes": [
         "images"
       ]
+    },
+    "service_tags": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::service-tag.service-tag",
+      "mappedBy": "service"
     }
   }
 }
